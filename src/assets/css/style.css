@@ -4640,6 +4640,15 @@
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none;
   }
+
+  @media (max-width: 576px) {
+    .display-2 {
+        font-size: 4.5rem; /* Tamaño de fuente reducido para pantallas pequeñas */
+    }
+    .display-4 {
+        font-size: 1.75rem; /* Tamaño de fuente reducido para pantallas pequeñas */
+    }
+}
   
   .navbar-nav {
     display: -webkit-box;
@@ -4684,7 +4693,7 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-right: 100%;
+    margin-right: 100%; /* esto controla el nav en la parte responsiva */
     
   }
   
