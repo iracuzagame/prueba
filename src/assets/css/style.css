@@ -4636,6 +4636,7 @@
     line-height: inherit;
     white-space: nowrap;
   }
+
   
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none;
@@ -4643,10 +4644,10 @@
 
   @media (max-width: 576px) {
     .display-2 {
-        font-size: 4.5rem; /* Tamaño de fuente reducido para pantallas pequeñas */
+        font-size: 3.70rem; /* Tamaño de fuente reducido para pantallas pequeñas */
     }
     .display-4 {
-        font-size: 1.75rem; /* Tamaño de fuente reducido para pantallas pequeñas */
+        font-size: 1.50rem; /* Tamaño de fuente reducido para pantallas pequeñas */
     }
 }
   
@@ -4693,7 +4694,7 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-right: 100%; /* esto controla el nav en la parte responsiva */
+   /* esto controla el nav en la parte responsiva */
     
   }
   
@@ -11162,7 +11163,26 @@
   .custom-navbar {
     min-height: 140px;
   }
-  
+  .navbar-nav .nav-item {
+    margin: 0 25px; /* Agrega margen entre los elementos del menú */
+}
+@media (max-width: 576px) {
+  .navbar-nav .nav-item {
+      margin: 0 25px; /* Aumenta el margen entre los elementos del menú en pantallas pequeñas */
+  }
+  .navbar-brand {
+      font-size: 1.25rem; /* Ajusta el tamaño de la fuente de la marca */
+  }
+  .navbar-collapse {
+      transition: transform 0.3s ease; /* Animación suave para la apertura del menú */
+  }
+  .navbar-collapse.collapsing {
+      transform: translateX(-100%); /* Animación de deslizamiento hacia arriba */
+  }
+  .navbar-collapse.show {
+      transform: translateY(0); /* Posición final del menú */
+  }
+}
   @media (max-width: 1199.98px) {
     .custom-navbar {
       min-height: auto !important;
@@ -11316,6 +11336,13 @@
     background-size: cover;
   }
   
+  @media (max-width: 576px) {
+    .has-img-bg {
+        height: 50vh; /* Ajusta la altura para pantallas pequeñas */
+    }
+}
+
+
   .has-bg-overlay {
     position: relative;
   }
