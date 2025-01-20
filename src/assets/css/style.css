@@ -40,6 +40,10 @@
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
@@ -55,6 +59,10 @@
     color: #f8f9fa;
     text-align: left;
     background-color: #343a40;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
   
   [tabindex="-1"]:focus {
@@ -542,6 +550,7 @@
   
   .container {
     width: 100%;
+    max-width: 100%;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -552,11 +561,31 @@
     .container {
       max-width: 540px;
     }
+    .display-2 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .display-4 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
   }
   
   @media (min-width: 768px) {
     .container {
       max-width: 720px;
+    }
+    .display-2 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .display-4 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1.2;
     }
   }
   
@@ -564,11 +593,31 @@
     .container {
       max-width: 960px;
     }
+    .display-2 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .display-4 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
   }
   
   @media (min-width: 1200px) {
     .container {
       max-width: 1140px;
+    }
+    .display-2 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      line-height: 1.2;
+    }
+    .display-4 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      line-height: 1.2;
     }
   }
   
@@ -4635,7 +4684,8 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-left: 5%;
+    margin-right: 100%;
+    
   }
   
   .navbar-toggler {
@@ -10913,7 +10963,7 @@
       size: a3;
     }
     body {
-      min-width: 992px !important;
+      width: 100%;
     }
     .container {
       min-width: 992px !important;
