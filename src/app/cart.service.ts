@@ -1,17 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../cart.service';
-import { CartItem } from '../../models/cart-item.model';
-import { RouterLink } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CartItem } from './models/cart-item.model';
 
-
-
-@Component({
-  selector: 'app-combos',
-  imports: [RouterLink],
-  templateUrl: './combos.component.html',
-  styleUrl: './combos.component.scss'
+@Injectable({
+  providedIn: 'root'
 })
-export class CombosComponent implements OnInit {
+export class CartService {
+  private items: CartItem[] = [];
 
   combos = [
     { id: 1, name: 'Combo popular', 
@@ -55,18 +49,27 @@ export class CombosComponent implements OnInit {
   ];
 
 
-  constructor(private cartService: CartService) {}
+  getCartItems(): CartItem[] {
+    return this.items;
+  }
 
-  ngOnInit(): void {}
+  getTotal(): number {
+    return this.items.reduce((total, item) => total + item.price * item.quantity, 0);
+  }
 
-  addToCart(combo: any): void {
-    const item: CartItem = {
-      id: combo.id,
-      name: combo.name,
-      price: combo.price,
-      quantity: 1,
-      imageUrl: combo.imageUrl
-    };
-    this.cartService.addToCart(item);
+  addToCart(item: CartItem): void {
+    this.items.push(item);
+  }
+
+  getCombos(): any[] {
+    return this.combos;
+  }
+
+  getMixedCombos(): any[] {
+    return this.mixedCombos;
+  }
+
+  clearCart(): void {
+    this.items = [];
   }
 }

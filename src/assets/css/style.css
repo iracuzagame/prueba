@@ -308,6 +308,23 @@
     margin: 0;
     border: 0;
   }
+
+  .cart-icon {
+    font-size: 15px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fondo semi-transparente para destacar el ícono */
+    padding: 10px;
+    border-radius: 50%;
+    top: 10px;  /* Ajusta la posición según sea necesario */
+    right: 10px; /* Ajusta la posición según sea necesario */
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+.cart-icon:hover {
+    transform: scale(1.1);  /* Efecto de agrandado al pasar el mouse */
+    background-color: rgba(0, 0, 0, 0.8);  /* Cambiar color al pasar el mouse */
+  }
   
   legend {
     display: block;
@@ -5129,10 +5146,13 @@
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
     padding: 1.25rem;
+    color: #000;
+    background-color: white;
   }
   
   .card-title {
     margin-bottom: 0.75rem;
+    
   }
   
   .card-subtitle {
@@ -8988,6 +9008,12 @@
     margin: 1.5rem !important;
   }
   
+  .espacio {
+    margin-top: 15%;
+    margin-bottom: 15%; /* Margen inferior */
+    padding: 10px;
+  }
+
   .mt-4,
   .my-4 {
     margin-top: 1.5rem !important;
@@ -11064,6 +11090,7 @@
   .card {
     border-color: #495057;
     overflow: hidden;
+    margin-bottom: 20px;
   }
   
   .testmonial-card {

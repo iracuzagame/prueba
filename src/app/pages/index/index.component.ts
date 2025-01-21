@@ -6,6 +6,9 @@ import { ProductsComponent } from "../../components/products/products.component"
 import { CombosComponent } from "../../components/combos/combos.component";
 import { ReviewsComponent } from "../../components/reviews/reviews.component";
 
+
+
+
 @Component({
   selector: 'app-index',
   imports: [HeaderComponent, FooterComponent, AboutComponent, ProductsComponent, CombosComponent, ReviewsComponent],
@@ -13,5 +16,5 @@ import { ReviewsComponent } from "../../components/reviews/reviews.component";
   styleUrl: './index.component.scss'
 })
 export class IndexComponent {
-
+ 
 }
