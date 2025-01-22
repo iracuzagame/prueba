@@ -34,16 +34,16 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css" 
             ],
             "scripts": [
               "src/assets/vendors/jquery/jquery-3.4.1.js",
               "src/assets/vendors/bootstrap/bootstrap.bundle.js",
               "src/assets/vendors/bootstrap/bootstrap.affix.js",
               "src/assets/vendors/wow/wow.js",
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/assets/js/foodhut.js"
+              "src/assets/js/foodhut.js",
+             "node_modules/jquery/dist/jquery.min.js",  
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {

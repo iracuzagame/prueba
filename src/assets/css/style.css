@@ -4711,10 +4711,11 @@
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
+          
    /* esto controla el nav en la parte responsiva */
-    
   }
-  
+
+
   .navbar-toggler {
     padding: 0.25rem 0.75rem;
     font-size: 1.25rem;
