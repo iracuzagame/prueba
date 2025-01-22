@@ -22,19 +22,28 @@
 <div class="container">
     <h2 class="my-4">Tu Carrito</h2>
     <div class="row">
-      @for(item of cartItems; track $index){
-          <div class="col-md-4">
-          <div class="card">
-            <img [src]="item.imageUrl" class="card-img-top" alt="Imagen del combo">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.name }}</h5>
-              <p class="card-text">{{ item.price }}$</p>
-              <p class="card-text">Cantidad: {{ item.quantity }}</p>
+      <div *ngFor="let item of cartItems; let i = index" class="col-md-4">
+        <div class="card">
+          <img [src]="item.imageUrl" class="card-img-top" alt="Imagen del combo">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <p class="card-text">{{ item.price }}$</p>
+            <p class="card-text">Cantidad: {{ item.quantity }}</p>
+            
+            <!-- Botones para actualizar cantidad o eliminar el item -->
+            <div class="d-flex justify-content-between">
+              <!-- Botón para reducir la cantidad -->
+              <button class="btn btn-danger btn-sm" (click)="decreaseQuantity(i)">
+                <i class="fas fa-minus"></i> <!-- Icono de menos -->
+              </button>
+              <!-- Botón para eliminar el item -->
+              <button class="btn btn-danger btn-sm" (click)="removeItem(i)">
+                <i class="fas fa-trash-alt"></i> <!-- Icono de papelera -->
+              </button>
             </div>
           </div>
         </div>
-      }
-      
+      </div>
     </div>
     <hr>
     <div class="total">
