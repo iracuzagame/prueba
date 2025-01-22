@@ -58,8 +58,18 @@ export class CartService {
   }
 
   addToCart(item: CartItem): void {
-    this.items.push(item);
+    // Verificamos si el item ya existe en el carrito
+    const existingItem = this.items.find(cartItem => cartItem.id === item.id);
+
+    if (existingItem) {
+      // Si el item ya está en el carrito, aumentamos la cantidad
+      existingItem.quantity++;
+    } else {
+      // Si no está, lo agregamos con cantidad 1
+      this.items.push(item);
+    }
   }
+
 
   getCombos(): any[] {
     return this.combos;
