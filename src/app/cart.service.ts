@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from './models/cart-item.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private items: CartItem[] = [];
+
+  private cartItemsCount = new BehaviorSubject<number>(0);
+  cartItemsCount$ = this.cartItemsCount.asObservable();
 
   combos = [
     { id: 1, name: 'Combo popular', 
@@ -62,14 +66,18 @@ export class CartService {
     const existingItem = this.items.find(cartItem => cartItem.id === item.id);
 
     if (existingItem) {
-      // Si el item ya está en el carrito, aumentamos la cantidad
       existingItem.quantity++;
     } else {
-      // Si no está, lo agregamos con cantidad 1
-      this.items.push(item);
+      this.items.push({ ...item, quantity: 1 });
     }
+
+    this.updateCartItemsCount();
   }
 
+  clearCart(): void {
+    this.items = [];
+    this.updateCartItemsCount(); // Notifica que el carrito está vacío
+  }
 
   getCombos(): any[] {
     return this.combos;
@@ -79,7 +87,10 @@ export class CartService {
     return this.mixedCombos;
   }
 
-  clearCart(): void {
-    this.items = [];
+  private updateCartItemsCount(): void {
+    // Calcula el total de productos en el carrito
+    const totalItems = this.items.reduce((count, item) => count + item.quantity, 0);
+    this.cartItemsCount.next(totalItems); // Notifica el nuevo conteo
   }
+
 }

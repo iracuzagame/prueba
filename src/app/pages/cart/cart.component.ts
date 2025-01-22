@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy ,AfterViewInit } from '@angular/core';
 import { ShopComponent } from "../../components/shop/shop.component";
 import { FooterComponent } from "../../components/footer/footer.component";
+import { Router } from '@angular/router';
 import { CartItem } from '../../models/cart-item.model';
 import { CartService } from '../../cart.service';
 
@@ -11,18 +12,25 @@ import { CartService } from '../../cart.service';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent implements OnInit {
-  cartItems: CartItem[] = [];
-  total: number = 0;
+export class CartComponent implements AfterViewInit, OnDestroy {
 
-  constructor(
-    private cartService: CartService,
-  ) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
-    this.total = this.cartService.getTotal();}
+  ngAfterViewInit(): void {
+    // Cuando la vista se ha inicializado, eliminamos las clases 'affix' del navbar
+    this.resetAffixState();
+  }
 
-    
+  ngOnDestroy(): void {
+    // Asegurarse de eliminar el efecto affix cuando se destruya el componente (esto cubre la navegación entre componentes)
+    this.resetAffixState();
+  }
 
+  private resetAffixState(): void {
+    const navbar = document.querySelector('.custom-navbar');
+    if (navbar) {
+      // Elimina las clases 'affix', 'affix-top', y 'affix-bottom' del navbar
+      navbar.classList.remove('affix', 'affix-top', 'affix-bottom');
+    }
+  }
 }
