@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
   private items: CartItem[] = [];
+  
 
   private cartItemsCount = new BehaviorSubject<number>(0);
   cartItemsCount$ = this.cartItemsCount.asObservable();
@@ -52,6 +53,14 @@ export class CartService {
     
   ];
 
+  constructor() {
+    // Verificamos si hay un carrito almacenado en localStorage
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+      this.items = JSON.parse(savedCart); // Recuperamos el carrito desde el localStorage
+      this.updateCartItemsCount();
+    }
+  }
 
   getCartItems(): CartItem[] {
     return this.items;
@@ -76,7 +85,8 @@ export class CartService {
 
   clearCart(): void {
     this.items = [];
-    this.updateCartItemsCount(); // Notifica que el carrito está vacío
+    this.updateCartItemsCount();
+    this.saveCartToLocalStorage(); 
   }
 
   getCombos(): any[] {
@@ -91,6 +101,10 @@ export class CartService {
     // Calcula el total de productos en el carrito
     const totalItems = this.items.reduce((count, item) => count + item.quantity, 0);
     this.cartItemsCount.next(totalItems); // Notifica el nuevo conteo
+  }
+
+  private saveCartToLocalStorage(): void {
+    localStorage.setItem('cartItems', JSON.stringify(this.items)); // Guardamos el carrito en localStorage
   }
 
 }
