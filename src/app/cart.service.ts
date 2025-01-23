@@ -6,9 +6,9 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private items: CartItem[] = [];
-  
+  private items: CartItem[] = []; // Lista de items del carrito
 
+  // Comportamiento observable de la cantidad total de items
   private cartItemsCount = new BehaviorSubject<number>(0);
   cartItemsCount$ = this.cartItemsCount.asObservable();
 
@@ -54,12 +54,7 @@ export class CartService {
   ];
 
   constructor() {
-    // Verificamos si hay un carrito almacenado en localStorage
-    const savedCart = localStorage.getItem('cartItems');
-    if (savedCart) {
-      this.items = JSON.parse(savedCart); // Recuperamos el carrito desde el localStorage
       this.updateCartItemsCount();
-    }
   }
 
   getCartItems(): CartItem[] {
@@ -79,14 +74,28 @@ export class CartService {
     } else {
       this.items.push({ ...item, quantity: 1 });
     }
-
     this.updateCartItemsCount();
   }
 
   clearCart(): void {
     this.items = [];
-    this.updateCartItemsCount();
-    this.saveCartToLocalStorage(); 
+    this.updateCartItemsCount(); 
+  }
+
+  decreaseQuantity(item: CartItem): void {
+    const index = this.items.indexOf(item);
+    if (index > -1 && this.items[index].quantity > 1) {
+      this.items[index].quantity--;
+      this.updateCartItemsCount();
+    }
+  }
+
+  removeItem(item: CartItem): void {
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+      this.updateCartItemsCount();
+    }
   }
 
   getCombos(): any[] {
@@ -97,14 +106,11 @@ export class CartService {
     return this.mixedCombos;
   }
 
-  private updateCartItemsCount(): void {
+ updateCartItemsCount(): void {
     // Calcula el total de productos en el carrito
     const totalItems = this.items.reduce((count, item) => count + item.quantity, 0);
     this.cartItemsCount.next(totalItems); // Notifica el nuevo conteo
   }
 
-  private saveCartToLocalStorage(): void {
-    localStorage.setItem('cartItems', JSON.stringify(this.items)); // Guardamos el carrito en localStorage
-  }
 
 }

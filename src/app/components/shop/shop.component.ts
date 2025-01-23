@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class ShopComponent implements OnInit {
   cartItems: CartItem[] = [];
   total = 0;
+  menuOpen: boolean = false;
 
   constructor(private cartService: CartService) {}
 
@@ -23,18 +24,24 @@ export class ShopComponent implements OnInit {
     this.total = this.cartService.getTotal();
   }
 
-  decreaseQuantity(index: number): void {
+  toggleMenu(): void {
+    this.menuOpen = !this.menuOpen; // Alternar estado del menú
+  }
+
+  decreaseQuantity(item: CartItem): void {
     // Disminuye la cantidad de un item en el carrito
-    if (this.cartItems[index].quantity > 1) {
-      this.cartItems[index].quantity--;
+    if (item.quantity > 1) {
+      item.quantity--;
       this.updateTotal();  // Actualiza el total
     }
   }
 
-  removeItem(index: number): void {
-    // Elimina un item del carrito
-    this.cartItems.splice(index, 1);
-    this.updateTotal();  // Actualiza el total después de eliminar un item
+  removeItem(item: CartItem): void {
+    const index = this.cartItems.indexOf(item);
+    if (index > -1) {
+      this.cartItems.splice(index, 1); // Elimina el item del carrito
+      this.updateTotal();  // Actualiza el total
+    }
   }
 
   updateTotal(): void {
