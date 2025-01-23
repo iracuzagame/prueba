@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router'
 import { CartService } from '../../cart.service';
 import { CartItem } from '../../models/cart-item.model';
 import { RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ export class ShopComponent implements OnInit {
   total = 0;
   menuOpen: boolean = false;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.cartItems = this.cartService.getCartItems();
