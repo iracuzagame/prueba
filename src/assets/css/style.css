@@ -11197,11 +11197,11 @@
     min-height: 140px;
   }
   .navbar-nav .nav-item {
-    margin: 0 25px; /* Agrega margen entre los elementos del menú */
+    margin: 0 20px; /* Agrega margen entre los elementos del menú */
 }
 @media (max-width: 576px) {
   .navbar-nav .nav-item {
-      margin: 0 25px; /* Aumenta el margen entre los elementos del menú en pantallas pequeñas */
+      margin: 0 20px; /* Aumenta el margen entre los elementos del menú en pantallas pequeñas */
   }
   .navbar-brand {
       font-size: 1.25rem; /* Ajusta el tamaño de la fuente de la marca */
@@ -11215,6 +11215,9 @@
   .navbar-collapse.show {
       transform: translateY(0); /* Posición final del menú */
   }
+  .brand-txt {
+    font-size: 1rem;
+  }
 }
   @media (max-width: 1199.98px) {
     .custom-navbar {
@@ -11224,6 +11227,9 @@
     }
     .custom-navbar .navbar-brand {
       display: none !important;
+    }
+    .brand-txt {
+      font-size: 1rem;
     }
   }
   
@@ -11262,7 +11268,7 @@
   .navbar-brand .brand-txt {
     position: absolute;
     bottom: 0%;
-    left: 50%;
+    left: 43%;
     -webkit-transform: translate(-50%, 50%);
         -ms-transform: translate(-50%, 50%);
             transform: translate(-50%, 50%);
@@ -11274,6 +11280,13 @@
     -webkit-transition: all 0.2s linear 0s;
     transition: all 0.2s linear 0s;
     font-family: "Oswald", sans-serif;
+  }
+
+  @media (max-width: 1229px) {
+    .brand-txt {
+      font-size: 1.5rem;
+      left: 43%;
+    }
   }
   
   .affix {
@@ -11289,8 +11302,9 @@
     opacity: 0;
     visibility: hidden;
     width: 50px;
+    
   }
-  
+
   .affix .navbar-brand .brand-txt {
     opacity: 1;
     visibility: visible;
